@@ -6,7 +6,7 @@ int main() {
 
 
 
-    TUNGSTEN_ERROR("Dumbass");
+    TUNGSTEN_WARN("Dumbass");
     TUNGSTEN_ASSERT(false, "ERROR: FALSE IS NOT TRUE");
 
     return 0;
