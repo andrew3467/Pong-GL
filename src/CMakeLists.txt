@@ -19,6 +19,7 @@ target_link_libraries(
         Pong_GL_Game
         PRIVATE
         Tungsten
+        spdlog::spdlog
 )
 
 target_include_directories(
