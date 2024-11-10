@@ -1,4 +1,6 @@
 
+#include <glm/vec3.hpp>
+
 #include "Tungsten.h"
 
 
@@ -9,9 +11,16 @@ int main() {
 
     Tungsten::Renderer::Init();
 
+        glm::vec3 p1(0,0,0);
+        glm::vec3 p2(-1, 0,0);
+        glm::vec3 p3(1, 0.5,0);
     while(!window.ShouldClose()) {
         Tungsten::Renderer::SetClearColor(0.5f, 0.3f, 1.0f);
         Tungsten::Renderer::Clear();
+
+        Tungsten::Renderer::DrawQuad(p1);
+        Tungsten::Renderer::DrawQuad(p2);
+        Tungsten::Renderer::DrawQuad(p3);
 
         window.Update();
     }
