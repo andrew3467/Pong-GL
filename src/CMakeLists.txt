@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD 23)
 add_subdirectory(../Tungsten ../bin)
 
 
+find_package(spdlog CONFIG REQUIRED)
+
 file(GLOB_RECURSE SRC *.cpp)
 file(GLOB_RECURSE HEADERS *.h)
 
