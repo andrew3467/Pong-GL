@@ -1,6 +1,8 @@
 
 #include <glm/vec3.hpp>
 
+#include "Ball.h"
+#include "Bumper.h"
 #include "Tungsten.h"
 
 
@@ -11,16 +13,26 @@ int main() {
 
     Tungsten::Renderer::Init();
 
-        glm::vec3 p1(0,0,0);
-        glm::vec3 p2(-1, 0,0);
-        glm::vec3 p3(1, 0.5,0);
+    Bumper player1({-2.75, 0, 0}, {0.25, 1.f, 1.0f});
+    Bumper player2({2.75, 0, 0}, {0.25, 1.f, 1.0f});
+
+    Ball ball({0,0,0}, {0.1f, 0.1f, 0.0f});
+
+
     while(!window.ShouldClose()) {
+        player1.Update(1.0f);
+        player2.Update(1.0f);
+        ball.Update(.025f);
+
+        ball.CheckBumperCollision(player1);
+        ball.CheckBumperCollision(player2);
+
         Tungsten::Renderer::SetClearColor(0.5f, 0.3f, 1.0f);
         Tungsten::Renderer::Clear();
 
-        Tungsten::Renderer::DrawQuad(p1, {0.5f, 0.5f, 0.5f});
-        Tungsten::Renderer::DrawQuad(p2, {2.0f, 0.5f, 1.0f});
-        Tungsten::Renderer::DrawQuad(p3, {0.5f, 2.0f, 1.0f});
+        Tungsten::Renderer::DrawQuad(player1.GetPosition(), player1.GetScale());
+        Tungsten::Renderer::DrawQuad(player2.GetPosition(), player2.GetScale());
+        Tungsten::Renderer::DrawQuad(ball.Position, glm::vec3(ball.Scale));
 
         window.Update();
     }
