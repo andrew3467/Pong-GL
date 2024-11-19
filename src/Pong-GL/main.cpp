@@ -18,9 +18,9 @@ int main() {
         Tungsten::Renderer::SetClearColor(0.5f, 0.3f, 1.0f);
         Tungsten::Renderer::Clear();
 
-        Tungsten::Renderer::DrawQuad(p1);
-        Tungsten::Renderer::DrawQuad(p2);
-        Tungsten::Renderer::DrawQuad(p3);
+        Tungsten::Renderer::DrawQuad(p1, {0.5f, 0.5f, 0.5f});
+        Tungsten::Renderer::DrawQuad(p2, {2.0f, 0.5f, 1.0f});
+        Tungsten::Renderer::DrawQuad(p3, {0.5f, 2.0f, 1.0f});
 
         window.Update();
     }
