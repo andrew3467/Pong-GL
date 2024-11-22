@@ -13,10 +13,10 @@ int main() {
 
     Tungsten::Renderer::Init();
 
-    Bumper player1({-2.75, 0, 0}, {0.25, 1.f, 1.0f});
-    Bumper player2({2.75, 0, 0}, {0.25, 1.f, 1.0f});
+    Bumper player1({-2.75, 1.2, 0}, {0.25, 1.f, 1.0f});
+    Bumper player2({2.75, 0.8, 0}, {0.25, 1.f, 1.0f});
 
-    Ball ball({0,0,0}, {0.1f, 0.1f, 0.0f});
+    Ball ball({0,0,0}, {0.2f, 0.2f, 0.0f});
 
 
     while(!window.ShouldClose()) {
@@ -24,8 +24,7 @@ int main() {
         player2.Update(1.0f);
         ball.Update(.025f);
 
-        ball.CheckBumperCollision(player1);
-        ball.CheckBumperCollision(player2);
+        ball.CheckBumperCollision(player1, player2);
 
         Tungsten::Renderer::SetClearColor(0.5f, 0.3f, 1.0f);
         Tungsten::Renderer::Clear();
