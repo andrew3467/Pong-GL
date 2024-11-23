@@ -16,6 +16,8 @@ public:
 
     void Update(float ts);
 
+    void UpdatePosition(const glm::vec3& newPos) { mPosition = newPos;}
+
 
     const glm::vec3& GetPosition() const {return mPosition;}
     const glm::vec3& GetScale() const {return mScale;}

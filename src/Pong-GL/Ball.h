@@ -16,11 +16,14 @@ struct Ball
     glm::vec3 Velocity = {};
     glm::vec3 StartVelocity = {};
 
+    int Player1Score = 0;
+    int Player2Score = 0;
+
     float Scale = 0.25f;
 
     Ball(const glm::vec3& position, const glm::vec3& initialVelocity) : Position(position), StartVelocity(initialVelocity), Velocity(initialVelocity) {}
 
-    void Reset()
+    void ResetBall()
     {
         Position = {};
         Velocity = StartVelocity;
@@ -37,25 +40,29 @@ struct Ball
 
         if(upperEdge >= 1.7f)
         {
-            Velocity.y *= -1;
+            Velocity.y *= -1.2;
         }
         if(lowerEdge <= -1.7f)
         {
-            Velocity.y *= -1;
+            Velocity.y *= -1.2;
         }
 
         //Check edge collision
         if(leftEdge <= -3.0f)
         {
             Velocity.x *= -1;
-            Reset();
-            TUNGSTEN_INFO("Player 2 Score");
+            ResetBall();
+            Player2Score++;
+
+            TUNGSTEN_INFO("Player 1: {0}, Player 2 {1}", Player1Score, Player2Score);
         }
         if(rightEdge >= 3.0f)
         {
             Velocity.x *= -1;
-            Reset();
-            TUNGSTEN_INFO("Player 1 Score");
+            ResetBall();
+            Player1Score++;
+
+            TUNGSTEN_INFO("Player 1: {0}, Player 2: {1}", Player1Score, Player2Score);
         }
 
 
@@ -79,7 +86,6 @@ struct Ball
 
             if(leftEdge <= bumperRight && upperEdge <= bumperUpper && lowerEdge >= bumperLower)
             {
-                TUNGSTEN_INFO("Collision 1 at {0}, {1}", Position.x, Position.y);
                 Velocity.x *= -1;
                 return true;
             }
@@ -95,7 +101,6 @@ struct Ball
             if(rightEdge >= bumperLeft)
                 if(upperEdge <= bumperUpper && lowerEdge >= bumperLower)
             {
-                TUNGSTEN_INFO("Collision 2 at {0}, {1}", Position.x, Position.y);
                 Velocity.x *= -1;
                 return true;
             }

@@ -12,7 +12,8 @@ Bumper::Bumper(const glm::vec3 &pos, const glm::vec3 &scale)
 
 void Bumper::Update(float ts)
 {
-
+    //Clamp bumper within screen
+    mPosition.y = glm::clamp(mPosition.y, -1.25f, 1.25f);
 }
 
 bool Bumper::CheckBounds()
